@@ -28,9 +28,3 @@ client = SBSysClient(
     token_url=token_url,
     instance=instance
 )
-
-
-print("Token fetched successfully:")
-print(client.token)
-
-
