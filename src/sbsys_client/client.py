@@ -31,6 +31,7 @@ class SBSYSClient:
         self.password = password
         self.token_url = token_url  # Save token_url for later use
         self.client.token = self.fetch_token()
+        self.client.headers.update({"Accept": "application/json"})
 
     def fetch_token(self):
         """Fetch OAuth2 token using password grant type."""
@@ -65,6 +66,7 @@ class SBSYSClient:
     def post(self, endpoint: str, json: dict, **kwargs) -> httpx.Response:
         """Generic POST request."""
         url = self._normalize_url(endpoint)
+        print(f"POST request to {url} with data: {_format_json(json)}")        
         response = self.client.post(url, json=json, **kwargs)
         self._handle_errors(response)
         return response
