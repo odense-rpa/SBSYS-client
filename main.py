@@ -3,7 +3,7 @@ import logging
 from dotenv import load_dotenv
 
 from sbsys_client.client import SBSYSClient
-from sbsys_client.functionality.user_client import User_Client
+from sbsys_client.functionality import citizen_client
 
 
 # Load environment variables from .env file
@@ -30,8 +30,7 @@ client = SBSYSClient(
     instance=instance
 )
 
-# Create an instance of Users_Client and pass the SBSYSClient instance
-users_client = User_Client(client)
+users_client = citizen_client.CitizenClient(client)
 
 # Call the get_user method on the instance
 user_details = users_client.get_user(cpr="222222-2222")  # Example CPR number, replace with a valid one for your tests

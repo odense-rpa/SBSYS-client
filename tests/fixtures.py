@@ -2,8 +2,7 @@ import pytest
 import os
 
 from dotenv import load_dotenv
-from sbsys_client.client import SBSYSClient
-from sbsys_client.functionality.user_client import User_Client
+from sbsys_client import SBSYSClient, Citizen_Client, Cases_Client, User_Client
 
 load_dotenv()
 
@@ -29,6 +28,14 @@ def base_client():
         token_url=token_url,
         instance=instance
     )
+
+@pytest.fixture
+def citizen_client(base_client):
+    return Citizen_Client(base_client)
+
+@pytest.fixture
+def cases_client(base_client):
+    return Cases_Client(base_client)
 
 @pytest.fixture
 def user_client(base_client):
